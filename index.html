@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .main{
+            height: 100vh;
+            
+            display: grid;
+            grid-template-rows: auto 1fr;
+            justify-items: center;
+            row-gap: 20px;
+        }
+        .main .login-main{
+            grid-row: 1/2;
+            display: grid;
+            grid-auto-rows: auto;
+            row-gap: 5px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <form class="login-main" method="POST" action="view_user_privs.php">
+            <div>
+                <label for="username">Username</label><br>
+                <input type="text" id="username" name="username"><br>
+            </div>
+            <div>
+                <select name="localhost" id="localhost">
+                    <option value="localhost">localhost</option>
+                </select>
+            </div>
+            <div>
+                <select name="database" id="database">
+                    <option value="it_107">It_107</option>
+                    <option value="global">Global</option>
+                    <option value="mark">Mark</option>
+                </select>
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input type="password" id="password" name="password"><br>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        <div>
+            <form method="POST" action="add_user.php">
+                <button type="submit"> ADD NEW USER </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
