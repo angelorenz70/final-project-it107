@@ -20,7 +20,9 @@
             row-gap: 5px;
         }
     </style>
-    <title>Document</title>
+    <title>Create User</title>
+    <link rel="icon" href="images/tab-head.png">
+
 </head>
 <body>
     <div class="main">
