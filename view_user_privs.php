@@ -20,7 +20,8 @@
             row-gap: 5px;
         }
     </style>
-    <title>Document</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="CSS/view_user.css">
 </head>
 <body>
     <div class="main">
