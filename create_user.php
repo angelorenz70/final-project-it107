@@ -45,7 +45,7 @@
             }
             $grants = implode(", ",$priv);
 
-            $conn = mysqli_connect($localhost,'root','password',$db_name);	
+            $conn = mysqli_connect($localhost,'root','BreechReca111301',$db_name);	
 
             if($conn){
                 try {
