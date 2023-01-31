@@ -4,28 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .main{
-            height: 100vh;
-            
-            display: grid;
-            grid-template-rows: auto 1fr;
-            justify-items: center;
-            row-gap: 20px;
-        }
-        .main .login-main{
-            grid-row: 1/2;
-            display: grid;
-            grid-auto-rows: auto;
-            row-gap: 5px;
-        }
-    </style>
+ 
     <title>Create User</title>
     <link rel="icon" href="images/tab-head.png">
+    <link rel="stylesheet" href="CSS/add_user.css">
+
 
 </head>
 <body>
-    <div class="main">
+    <section class="section-main">
         <?php
             $localhost = $_POST['localhost_'];
             $username = $_POST['username'];
@@ -45,7 +32,7 @@
             }
             $grants = implode(", ",$priv);
 
-            $conn = mysqli_connect($localhost,'root','BreechReca111301',$db_name);	
+            $conn = mysqli_connect($localhost,'root','',$db_name);	
 
             if($conn){
                 try {
@@ -64,7 +51,7 @@
                 echo "failed";
             }   
         ?>
-    </div>
+    </section>
 </body>
 </html>
 

@@ -21,6 +21,7 @@
                 </div>
 
                 <div class="localhost-container">
+                <label class="username" for="">Local Host</label><br>
                     <select class="localhost" name="localhost_" id="localhost">
                         <option class="localhost-option" value="localhost">localhost</option>
                     </select>
@@ -32,6 +33,7 @@
                 </div>
 
                 <div class="database-container">
+                    <label class="username" for="">Database</label><br>
                     <select class="database" name="database_" id="database">
                         <option class="database-option" value="it_107">It_107</option>
                         <option class="database-option" value="global">Global</option>

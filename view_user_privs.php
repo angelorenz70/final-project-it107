@@ -20,10 +20,10 @@
             ' LOCK TABLES', ' REFERENCES', ' REPLICATION CLIENT', ' REPLICATION SLAVE',' CREATE USER'
             );
 
-            $localhost = $_POST['localhost'];
+            $localhost = $_POST['localhost_'];
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $db_name = $_POST['database'];
+            $db_name = $_POST['database_'];
 
             $conn = mysqli_connect($localhost, $username,$password,$db_name);	
 
@@ -49,7 +49,7 @@
             $permissions = explode(",", $matches[1]);
     
             echo "<table class='table-container'>";
-                echo "<tr class='table-row'><th class='table-head'>Grants</th><th>Type</th></tr>";
+                echo "<tr class='table-row'><th class='table-head'>Privileges</th><th>Type</th></tr>";
                     $type = '- ';
                     foreach ($permissions as $grant) {
                         echo "<tr class='table-row'><td>" . $grant . "</td>";
