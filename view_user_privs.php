@@ -64,9 +64,7 @@
 
             preg_match("/GRANT (.*?) ON/", $output, $matches);
             $permissions = explode(",", $matches[1]);
-            foreach ($permissions as &$value) {
-                $value = preg_replace('/\s+/', '', $value);
-            }
+           
     
             echo "<table class='table-container'>";
                 echo "<tr class='table-row'><th class='table-head'>Privileges</th><th>Type</th></tr>";
