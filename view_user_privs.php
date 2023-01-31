@@ -14,7 +14,7 @@
         <div class="main">
             <?php
             $data = array(' INSERT',' DELETE',' UPDATE','SELECT', ' FILE');
-            $structure = array(' CREATE',' ALTER',' INDEX',' DROP',' CREATE TEMPORARY TABLES',
+            $structure = array('CREATE','ALTER','INDEX','DROP','CREATE TEMPORARY TABLES',
             ' SHOW VIEW',' CREATE ROUTINE',' ALTER ROUTINE',' EXECUTE',' CREATE VIEW',' EVENT',' TRIGGER');
             $administration = array(' GRANT', ' SUPER' ,' PROCESS' ,' RELOAD' ,' SHUTDOWN', ' SHOW DATABASES',
             ' LOCK TABLES', ' REFERENCES', ' REPLICATION CLIENT', ' REPLICATION SLAVE',' CREATE USER'
@@ -23,31 +23,50 @@
             $localhost = $_POST['localhost_'];
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $db_name = $_POST['database_'];
+            $db_name = $_POST['database'];
 
-            $conn = mysqli_connect($localhost, $username,$password,$db_name);	
+            try {
+                if($db_name == 'Global'){
+                    $conn = mysqli_connect($localhost, $username,$password);
+                }else{
+                    $conn = mysqli_connect($localhost, $username,$password,$db_name);
+                }
+            } catch (Exception $e) {
+                echo "<script>alert('Access Denied: You do not have sufficient permissions to access this database.');</script>";
+                echo '<script>window.location.href="index.php"</script>';
+            }
+            
 
             $grants = array();
+            $size = 0;
             if($conn){
                 echo "<div class='success'>Hello, ".$username."</div>";
                 echo "<div class='success'>Below are your permissions on database: ".$db_name."</div>";
-
+                
                 $result = mysqli_query($conn, "SHOW GRANTS FOR '".$username."'@'".$localhost."'");
+                
                 while ($row = mysqli_fetch_row($result)) {
                     $grants[] = $row;
+                    $size = $size + 1;
                 }
             }else{
                 echo "<div class='error'>Error</div>";
             }
-            if($username == 'root'){
+            if($db_name == 'Global'){
                 $output = $grants[0][0];
             }else{
-                $output = $grants[1][0];
+                if($size == 2){
+                    $output = $grants[1][0];
+                }else{
+                    $output = $grants[0][0];
+                }
             }
 
-            echo $output;
             preg_match("/GRANT (.*?) ON/", $output, $matches);
             $permissions = explode(",", $matches[1]);
+            foreach ($permissions as &$value) {
+                $value = preg_replace('/\s+/', '', $value);
+            }
     
             echo "<table class='table-container'>";
                 echo "<tr class='table-row'><th class='table-head'>Privileges</th><th>Type</th></tr>";
@@ -65,6 +84,9 @@
                     }
             echo "</table>";
             ?>
+            <form method="GET" action="index.php">
+                <input class="logout-submit" type="submit" value="Log out">
+            </form>
         </div>
     </body>
 </html>

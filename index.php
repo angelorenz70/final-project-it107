@@ -22,21 +22,44 @@
     
                 <div class="selection-container">
                     <div class="location-container">
-                        <select class="localhost" name="localhost" id="localhost">
+                        <label class="label" for="username">Local Host</label><br>
+                        <select class="localhost" name="localhost_" id="localhost">
                             <option class="localhost-option" value="localhost">Localhost</option>
-                            <option class="localhost-option" value="localhost">Online</option>
                         </select>
                     </div>
-        
+                    
+                    <?php
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "BreechReca111301";
+                        // Create connection
+                        $conn = mysqli_connect($servername, $username, $password);
+
+                        // Check connection
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        $sql = "SHOW DATABASES";
+                        $result = mysqli_query($conn, $sql);
+                    ?>
                     <div class="database-container">
-                        <select class="database" name="database" id="database">
-                            <option class="data-option" value="it_107">IT-107</option>
-                            <option class="data-option" value="global">Global</option>
-                            <option class="data-option" value="mark">Mark</option>
-                        </select>
+                        <?php
+                            echo "<label class='label' for='username'>Database</label><br>";
+                            echo "<select class='database' name='database' id='database'>";
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                if(!($row['Database'] == 'information_schema'  || $row['Database'] == 'mysql' || $row['Database'] == 'order' || $row['Database'] == 'performance_schema' || $row['Database'] == 'sys')){
+                                    echo "<option value='" . $row['Database'] . "'>" . $row['Database'] . "</option>";
+                                }
+                            }
+                            echo "<option value='Global'> Global </option>";
+                            echo "</select>";
+
+
+                            mysqli_close($conn);
+                        ?>
                     </div>
                 </div>
-    
+
                 <div class="password-container">
                     <label class="password-label" for="password">Password</label><br>
                     <input class="password" type="password" id="password" name="password"><br>

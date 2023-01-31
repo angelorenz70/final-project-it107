@@ -12,7 +12,7 @@
 </head>
 <body>
     <section class="section-main">
-        <div class="main-container">
+        <div class="main-container" id="app" >
             <form class="login-main" method="POST" action="create_user.php">
 
                 <div class="username-contatiner">
@@ -32,13 +32,35 @@
                     <input class="password-input" type="password" id="password" name="password"><br>
                 </div>
 
-                <div class="database-container">
-                    <select class="database" name="database_" id="database">
-                        <option class="database-option" value="it_107">It_107</option>
-                        <option class="database-option" value="global">Global</option>
-                        <option class="database-option" value="mark">Mark</option>
+                <?php
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "BreechReca111301";
+                        // Create connection
+                        $conn = mysqli_connect($servername, $username, $password);
+
+                        // Check connection
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        $sql = "SHOW DATABASES";
+                        $result = mysqli_query($conn, $sql);
+                    ?>
+                    <div class="database-container">
+                    <label class='username' for=''>Database</label><br>
+                    <select class="database" name="database" id="database" v-model="database">
+                        <option value='Global'> Global </option>
+                        <?php
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                if(!($row['Database'] == 'information_schema'  || $row['Database'] == 'mysql' || $row['Database'] == 'order' || $row['Database'] == 'performance_schema' || $row['Database'] == 'sys')){
+                                    echo "<option value='" . $row['Database'] . "'>" . $row['Database'] . "</option>";
+                                }
+                            }
+                            
+                            mysqli_close($conn);
+                        ?>
                     </select>
-                </div> -->
+                    </div>
 
                 <div class="privileges-container">
                         <label class="privileges-title" for="">Privileges</label>
@@ -59,8 +81,10 @@
                                         <label for="update">update</label><br>
                                     <input class="table-checkbox" type="checkbox" name="delete" value="delete">
                                         <label for="delete">delete</label><br>
+                                    <div v-if="database == 'Global'">
                                     <input class="table-checkbox" type="checkbox" name="file" value="file option">
                                         <label for="file">file</label><br>
+                                    </div>
                                 </td>
                                 <td class="table-column">
                                     <input class="table-checkbox" type="checkbox" name="create" value="create">
@@ -91,6 +115,7 @@
                                 <td class="table-column">
                                     <input class="table-checkbox" type="checkbox" name="grant" value="grant option">
                                         <label for="grant">grant</label><br>
+                                    <div v-if="database == 'Global'">
                                     <input class="table-checkbox" type="checkbox" name="super" value="super">
                                         <label for="super">super</label><br>
                                     <input class="table-checkbox" type="checkbox" name="process" value="process">
@@ -101,16 +126,19 @@
                                         <label for="shutdown">shutdown</label><br>
                                     <input class="table-checkbox" type="checkbox" name="show_database" value="show databases">
                                         <label for="show database">show database</label><br>
+                                    </div>
                                     <input class="table-checkbox" type="checkbox" name="lock_tables" value="lock tables">
                                         <label for="lock tables">lock tables</label><br>
                                     <input class="table-checkbox" type="checkbox" name="references" value="references">
                                         <label for="references">references</label><br>
+                                    <div v-if="database == 'Global'">
                                     <input class="table-checkbox" type="checkbox" name="replication_client" value="replication client">
                                         <label for="replication client">replication client</label><br>
                                     <input class="table-checkbox" type="checkbox" name="replication_slave" value="replication slave">
                                         <label for="replocation slave">replication slave</label><br>
                                     <input class="table-checkbox" type="checkbox" name="create_user" value="create user">
                                         <label for="create user">create user</label><br>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -118,7 +146,22 @@
                 </div>
                 <input class="button" type="submit" value="Submit">
             </form>
+            
         </div>
     </section>
+    <script src="js/vue.global.js"></script>
+    <script> 
+        const { createApp } = Vue 
+        createApp({
+            data(){
+                return {
+                    database: 'Global',
+                }
+            },
+            created(){
+                this.database = "Global"
+            }
+        }).mount('#app')
+    </script>
 </body>
 </html>

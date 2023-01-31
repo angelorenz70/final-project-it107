@@ -32,19 +32,32 @@
             }
             $grants = implode(", ",$priv);
 
-            $conn = mysqli_connect($localhost,'root','',$db_name);	
+            $conn = mysqli_connect($localhost,'root','BreechReca111301');	
 
             if($conn){
                 try {
-                    $query = "CREATE USER '".$username."'@'".$localhost."' IDENTIFIED BY '".$password."';";
-                    mysqli_query($conn, $query);
-                    $query = "GRANT $grants ON $db_name.* TO '$username'@'$localhost';";
-                    mysqli_query($conn, $query);
-                    echo "<script> alert('success') </script>";
-                    echo '<script>window.location.href="index.html"</script>';
+                    if($grants != null){
+                        $query = "CREATE USER '".$username."'@'".$localhost."' IDENTIFIED BY '".$password."';";
+                        mysqli_query($conn, $query);
+                        if($db_name == 'Global'){
+                            $query = "GRANT $grants ON *.* TO '$username'@'$localhost';";
+                            mysqli_query($conn, $query);
+                        }else{
+                            $query = "GRANT $grants ON $db_name.* TO '$username'@'$localhost';";
+                            mysqli_query($conn, $query);
+                        }
+                        echo "<script> alert('success') </script>";
+                        echo '<script>window.location.href="index.php"</script>';
+                    }else{
+                        $query = "CREATE USER '".$username."'@'".$localhost."' IDENTIFIED BY '".$password."';";
+                        mysqli_query($conn, $query);
+                        echo "<script> alert('success') </script>";
+                        echo '<script>window.location.href="index.php"</script>';
+                    }
                 }
                 catch(Exception $e) {
-                    echo 'Message: ' .$e->getMessage();
+                    echo "<script>alert('The user is already exist.');</script>";
+                    echo '<script>window.location.href="index.php"</script>';
                 }
                 
             }else{
