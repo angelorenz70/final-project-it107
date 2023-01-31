@@ -21,6 +21,7 @@
                 </div>
 
                 <div class="localhost-container">
+                <label class="username" for="">Local Host</label><br>
                     <select class="localhost" name="localhost_" id="localhost">
                         <option class="localhost-option" value="localhost">localhost</option>
                     </select>
@@ -31,33 +32,7 @@
                     <input class="password-input" type="password" id="password" name="password"><br>
                 </div>
 
-                <?php
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "BreechReca111301";
-                        // Create connection
-                        $conn = mysqli_connect($servername, $username, $password);
-
-                        // Check connection
-                        if (!$conn) {
-                            die("Connection failed: " . mysqli_connect_error());
-                        }
-                        $sql = "SHOW DATABASES";
-                        $result = mysqli_query($conn, $sql);
-                    ?>
-                    <div class="database-container">
-                        <?php
-                            echo "<select class='database' name='database' id='database'>";
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<option value='" . $row['Database'] . "'>" . $row['Database'] . "</option>";
-                            }
-                            echo "<option value='global'> Global </option>";
-                            echo "</select>";
-                            
-                            mysqli_close($conn);
-                        ?>
-                    </div>
-                <!-- <div class="database-container">
+                <div class="database-container">
                     <select class="database" name="database_" id="database">
                         <option class="database-option" value="it_107">It_107</option>
                         <option class="database-option" value="global">Global</option>
