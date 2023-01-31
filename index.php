@@ -17,7 +17,7 @@
             <form class="login-main" method="POST" action="view_user_privs.php">
                 <div class="label-container">
                     <label class="label" for="username">Username</label><br>
-                    <input class="username" type="text" id="username" name="username"><br>
+                    <input class="username" type="text" id="username" name="username" required><br>
                 </div>
     
                 <div class="selection-container">

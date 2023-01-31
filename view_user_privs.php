@@ -14,7 +14,7 @@
         <div class="main">
             <?php
             $data = array(' INSERT',' DELETE',' UPDATE','SELECT', ' FILE');
-            $structure = array('CREATE','ALTER','INDEX','DROP','CREATE TEMPORARY TABLES',
+            $structure = array(' CREATE',' ALTER',' INDEX','DROP','CREATE TEMPORARY TABLES',
             ' SHOW VIEW',' CREATE ROUTINE',' ALTER ROUTINE',' EXECUTE',' CREATE VIEW',' EVENT',' TRIGGER');
             $administration = array(' GRANT', ' SUPER' ,' PROCESS' ,' RELOAD' ,' SHUTDOWN', ' SHOW DATABASES',
             ' LOCK TABLES', ' REFERENCES', ' REPLICATION CLIENT', ' REPLICATION SLAVE',' CREATE USER'
