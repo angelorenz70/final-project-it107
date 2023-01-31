@@ -45,6 +45,7 @@
                 $output = $grants[1][0];
             }
 
+            echo $output;
             preg_match("/GRANT (.*?) ON/", $output, $matches);
             $permissions = explode(",", $matches[1]);
     

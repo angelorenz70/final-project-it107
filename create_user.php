@@ -30,7 +30,7 @@
             $localhost = $_POST['localhost_'];
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $db_name = $_POST['database_'];
+            $db_name = $_POST['database'];
         
             $available_priv = array('select','insert','delete','update','drop','index','alter','create_temporary_tables',
                                 'lock_tables','create_view','create_routine','show_view','alter_routine','execute',
