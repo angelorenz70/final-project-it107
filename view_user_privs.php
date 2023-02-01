@@ -62,6 +62,7 @@
                 }
             }
 
+            
             preg_match("/GRANT (.*?) ON/", $output, $matches);
             $permissions = explode(",", $matches[1]);
            

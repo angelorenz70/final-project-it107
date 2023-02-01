@@ -41,6 +41,7 @@
                         }
                         $sql = "SHOW DATABASES";
                         $result = mysqli_query($conn, $sql);
+                        
                     ?>
                     <div class="database-container">
                         <?php

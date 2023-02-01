@@ -16,6 +16,7 @@ var Vue = (function (exports) {
       }
       return expectsLowerCase ? val => !!map[val.toLowerCase()] : val => !!map[val];
   }
+  
 
   /**
    * dev only flag -> name mapping
