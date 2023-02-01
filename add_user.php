@@ -32,7 +32,7 @@
                     <input class="password-input" type="password" id="password" name="password"><br>
                 </div>
 
-                
+
                 <?php
                         $servername = "localhost";
                         $username = "root";
@@ -83,7 +83,7 @@
                                     <input class="table-checkbox" type="checkbox" name="delete" value="delete">
                                         <label for="delete">delete</label><br>
                                     <div v-if="database == 'Global'">
-                                    <input class="table-checkbox" type="checkbox" name="file" value="file option">
+                                    <input class="table-checkbox" type="checkbox" name="file" value="file">
                                         <label for="file">file</label><br>
                                     </div>
                                 </td>

@@ -21,7 +21,8 @@
         
             $available_priv = array('select','insert','delete','update','drop','index','alter','create_temporary_tables',
                                 'lock_tables','create_view','create_routine','show_view','alter_routine','execute',
-                                'event','trigger','grant','references', 
+                                'event','trigger','grant','references','super','process','reload','shutdown','show_database',
+                                'replication_client','replication_slave','create_user','file'
                                 );
 
             $priv = [];
@@ -34,7 +35,7 @@
 
             $conn = mysqli_connect($localhost,'root','BreechReca111301');	
 
-            
+
             if($conn){
                 try {
                     if($grants != null){
