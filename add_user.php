@@ -68,9 +68,9 @@
                     <div class="table-container">
                         <table class="read-main">
                             <tr class="table-head">
-                                <th>DATA</th>
-                                <th>STRUCTURE</th>
-                                <th>ADMINISTRATION</th>
+                                <th><input onclick="selectData()" type="checkbox" >DATA</th>
+                                <th><input onclick="selectStruct()" type="checkbox" >STRUCTURE</th>
+                                <th><input onclick="selectAdmin()" type="checkbox" >ADMINISTRATION</th>
                             </tr>
                             <tr>
                                 <td class="table-column">
@@ -88,56 +88,56 @@
                                     </div>
                                 </td>
                                 <td class="table-column">
-                                    <input class="table-checkbox" type="checkbox" name="create" value="create">
+                                    <input class="table-checkbox1" type="checkbox" name="create" value="create">
                                         <label for="create">create</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="alter" value="alter">
+                                    <input class="table-checkbox1" type="checkbox" name="alter" value="alter">
                                         <label for="alter">alter</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="index" value="index">
+                                    <input class="table-checkbox1" type="checkbox" name="index" value="index">
                                         <label for="index">index</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="drop" value="drop">
+                                    <input class="table-checkbox1" type="checkbox" name="drop" value="drop">
                                         <label for="drop">drop</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="create_temporary_tables" value="create temporary tables">
+                                    <input class="table-checkbox1" type="checkbox" name="create_temporary_tables" value="create temporary tables">
                                         <label for="create temporary tables">create temporary tables</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="show_view" value="show view">
+                                    <input class="table-checkbox1" type="checkbox" name="show_view" value="show view">
                                         <label for="show view">show view</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="create_routine" value="create routine">
+                                    <input class="table-checkbox1" type="checkbox" name="create_routine" value="create routine">
                                         <label for="create routine">create routine</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="alter_routine" value="alter routine">
+                                    <input class="table-checkbox1" type="checkbox" name="alter_routine" value="alter routine">
                                         <label for="alter routine">alter routine</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="execute" value="execute">
+                                    <input class="table-checkbox1" type="checkbox" name="execute" value="execute">
                                         <label for="execute">execute</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="create_view" value="create view">
+                                    <input class="table-checkbox1" type="checkbox" name="create_view" value="create view">
                                         <label for="create view">create view</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="event" value="event">
+                                    <input class="table-checkbox1" type="checkbox" name="event" value="event">
                                         <label for="event">event</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="trigger" value="trigger">
+                                    <input class="table-checkbox1" type="checkbox" name="trigger" value="trigger">
                                         <label for="trigger">trigger</label><br>
                                 </td>
                                 <td class="table-column">
-                                    <input class="table-checkbox" type="checkbox" name="grant" value="grant option">
+                                    <input class="table-checkbox2" type="checkbox" name="grant" value="grant option">
                                         <label for="grant">grant</label><br>
                                     <div v-if="database == 'Global'">
-                                    <input class="table-checkbox" type="checkbox" name="super" value="super">
+                                    <input class="table-checkbox2" type="checkbox" name="super" value="super">
                                         <label for="super">super</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="process" value="process">
+                                    <input class="table-checkbox2" type="checkbox" name="process" value="process">
                                         <label for="process">process</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="reload" value="reload">
+                                    <input class="table-checkbox2" type="checkbox" name="reload" value="reload">
                                         <label for="reload">reload</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="shutdown" value="shutdown">
+                                    <input class="table-checkbox2" type="checkbox" name="shutdown" value="shutdown">
                                         <label for="shutdown">shutdown</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="show_database" value="show databases">
+                                    <input class="table-checkbox2" type="checkbox" name="show_database" value="show databases">
                                         <label for="show database">show database</label><br>
                                     </div>
-                                    <input class="table-checkbox" type="checkbox" name="lock_tables" value="lock tables">
+                                    <input class="table-checkbox2" type="checkbox" name="lock_tables" value="lock tables">
                                         <label for="lock tables">lock tables</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="references" value="references">
+                                    <input class="table-checkbox2" type="checkbox" name="references" value="references">
                                         <label for="references">references</label><br>
                                     <div v-if="database == 'Global'">
-                                    <input class="table-checkbox" type="checkbox" name="replication_client" value="replication client">
+                                    <input class="table-checkbox2" type="checkbox" name="replication_client" value="replication client">
                                         <label for="replication client">replication client</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="replication_slave" value="replication slave">
+                                    <input class="table-checkbox2" type="checkbox" name="replication_slave" value="replication slave">
                                         <label for="replocation slave">replication slave</label><br>
-                                    <input class="table-checkbox" type="checkbox" name="create_user" value="create user">
+                                    <input class="table-checkbox2" type="checkbox" name="create_user" value="create user">
                                         <label for="create user">create user</label><br>
                                     </div>
                                 </td>
@@ -163,6 +163,26 @@
                 this.database = "Global"
             }
         }).mount('#app')
+    </script>
+    <script>
+        function selectData() {
+            var checkboxes = document.querySelectorAll(".table-checkbox");
+            for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
+            }
+        }
+        function selectStruct() {
+            var checkboxes = document.querySelectorAll(".table-checkbox1");
+            for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
+            }
+        }
+        function selectAdmin() {
+            var checkboxes = document.querySelectorAll(".table-checkbox2");
+            for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
+            }
+        }
     </script>
 </body>
 </html>
